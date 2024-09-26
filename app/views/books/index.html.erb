@@ -1,0 +1,17 @@
+<h1>Books</h1>
+
+<%= form_with url: filter_by_book_name_path, method: :get, local: true do %>
+    <%= label_tag :query, "Search by Book Name:" %>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Filter" %>
+<% end %>
+
+<ul>
+    <% @books.each do |book| %>
+        <li>
+        <%= link_to book.title, book %>
+        </li>
+    <% end %>
+</ul>
+
+<%= link_to "New Book", new_book_path %>
