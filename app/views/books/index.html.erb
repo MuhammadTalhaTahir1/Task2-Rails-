@@ -6,12 +6,20 @@
     <%= submit_tag "Filter" %>
 <% end %>
 
+<% if can? :create, Book %>
+    <%= link_to "New Book", new_book_path %>
+<% end %>
+
 <ul>
     <% @books.each do |book| %>
         <li>
         <%= link_to book.title, book %>
+        <% if can? :update, book %>
+            <%= link_to 'Edit', edit_book_path(book) %>
+        <% end %>
+        <% if can? :destroy, book %>
+            <%= link_to 'Destroy', book_path(book), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
         </li>
     <% end %>
 </ul>
-
-<%= link_to "New Book", new_book_path %>

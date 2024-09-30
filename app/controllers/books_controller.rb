@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  load_and_authorize_resource
   def index
     if params[:query].present?
       @books = Book.where("title LIKE ?", "%#{params[:query]}%")
